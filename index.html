@@ -79,7 +79,9 @@ tr:last-child td { border-bottom: 0; }
 td.n { font: 13px var(--mono); color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
 td.files { white-space: nowrap; }
 td.files a, td.files .na { font: 13px var(--mono); margin-right: 12px; }
-.na { color: var(--line); }
+.na { color: var(--muted); opacity: .5; }
+.res { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; font-size: 13.5px; }
+.note { font-size: 13px; color: var(--muted); }
 
 footer { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 18px; font-size: 13px; color: var(--muted); }
 @media (max-width: 760px) {
@@ -96,7 +98,7 @@ footer { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 18
   <!-- ============ SIDEBAR ============ -->
   <aside>
     <div class="photo">
-      <img src="photo.jpg" alt="Hugo Malafosse" onerror="this.remove()">
+      <img src="photo.jpeg" alt="Hugo Malafosse" onerror="this.remove()">
       <span aria-hidden="true">HM</span>
     </div>
     <div>
@@ -158,36 +160,74 @@ footer { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 18
     <section id="teaching">
       <h2>Teaching</h2>
 
-      <!-- ===== CompStat : un <tr> par séance. Lien absent → <span class="na">—</span> ===== -->
+      <!-- ===== CompStat =====
+           Fichiers dans le dossier TD_COMPSTATS/ du repo.
+           Pas encore publié → <span class="na">—</span> ; publié → <a href="TD_COMPSTATS/fichier.pdf">Libellé</a>
+           Ne jamais mettre en ligne : QuizN_teacher, td*_ref.py, td2_outils.py, Deroule_TD*, notebooks de démo. -->
       <div class="course" id="compstat">
         <div class="course-head">
           <div>
             <b>Computational Statistics</b>
             <small>Master MVA, ENS Paris-Saclay · lab sessions (TP) · course by Stéphanie Allassonnière · 2026–2027</small>
           </div>
-          <a class="visio" href="#">Join the video call</a>  <!-- TODO lien visio pour les absents -->
+          <a class="visio" href="#">Join the video call</a>  <!-- TODO lien visio (salle d'attente / mot de passe) -->
         </div>
         <div class="table-wrap">
           <table>
             <thead>
-              <tr><th>Session</th><th>Topic</th><th>Material</th><th>Resources</th></tr>
+              <tr><th>Session</th><th>Topic</th><th>Subject</th><th>Quiz</th><th>Quiz solution</th><th>Resources</th></tr>
             </thead>
             <tbody>
               <tr>
-                <td class="n">TP 1 · [dd/mm]</td>
-                <td>[Topic]</td>
-                <td class="files"><a href="compstat/tp1.pdf">Subject</a><a href="compstat/quiz1.pdf">Quiz</a><a href="compstat/quiz1_sol.pdf">Solution</a></td>
-                <td><a href="#">[resource]</a></td>
+                <td class="n">TP 1<br>30/10</td>
+                <td>Estimators, simulation, stochastic gradient descent</td>
+                <td class="files"><a href="TD_COMPSTATS/TP-1.pdf">PDF</a></td>
+                <td class="files"><span class="na">—</span></td>
+                <td class="files"><span class="na">—</span></td>
+                <td><ul class="res">
+                  <li><span class="na">Recap of lectures 1–3</span></li>
+                  <li><span class="na">FAQ</span></li>
+                  <li><a href="https://archive.ics.uci.edu/dataset/45/heart+disease">Heart Disease data (UCI)</a></li>
+                  <li><a href="https://arxiv.org/abs/1606.04838">Bottou, Curtis &amp; Nocedal (2018)</a></li>
+                </ul></td>
               </tr>
               <tr>
-                <td class="n">TP 2 · [dd/mm]</td>
-                <td>[Topic]</td>
-                <td class="files"><a href="compstat/tp2.pdf">Subject</a><span class="na">—</span><span class="na">—</span></td>
-                <td><span class="na">—</span></td>
+                <td class="n">TP 2<br>20/11</td>
+                <td>EM algorithm, importance sampling</td>
+                <td class="files"><span class="na">—</span></td>
+                <td class="files"><span class="na">—</span></td>
+                <td class="files"><span class="na">—</span></td>
+                <td><ul class="res">
+                  <li><span class="na">Course sheet</span></li>
+                  <li><a href="TD_COMPSTATS/birth_death_tp2_2025.csv">Data: birth_death.csv</a></li>
+                  <li><a href="https://population.un.org/wpp/">UN World Population Prospects</a></li>
+                </ul></td>
+              </tr>
+              <tr>
+                <td class="n">TP 3<br>[dd/mm]</td>
+                <td>Metropolis–Hastings and Gibbs samplers, SAEM</td>
+                <td class="files"><span class="na">—</span></td>
+                <td class="files"><span class="na">—</span></td>
+                <td class="files"><span class="na">—</span></td>
+                <td><ul class="res">
+                  <li><a href="https://proceedings.neurips.cc/paper/2015/hash/186a157b2992e7daed3677ce8e9fe40f-Abstract.html">Schiratti et al. (NeurIPS 2015)</a></li>
+                </ul></td>
+              </tr>
+              <tr>
+                <td class="n">TP 4<br>[dd/mm]</td>
+                <td>Improving Metropolis–Hastings: adaptive MCMC, parallel tempering, block Gibbs</td>
+                <td class="files"><span class="na">—</span></td>
+                <td class="files"><span class="na">—</span></td>
+                <td class="files"><span class="na">—</span></td>
+                <td><ul class="res">
+                  <li><span class="na">tmalaexcov.txt</span></li>
+                  <li><a href="https://doi.org/10.1198/jcgs.2009.06134">Roberts &amp; Rosenthal (2009)</a></li>
+                </ul></td>
               </tr>
             </tbody>
           </table>
         </div>
+        <p class="note">Each 15-minute quiz covers one TP and takes place at the start of the next session. Notebooks are sent to compstatsmva [at] gmail.com.</p>
       </div>
 
       <ul class="list">
