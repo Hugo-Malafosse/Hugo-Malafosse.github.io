@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hugo Malafosse</title>
+<meta name="description" content="Hugo Malafosse, PhD student at HeKA (Inria, Inserm, Université Paris Cité). Target trial emulation and virtual patients from the SNDS.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f7f9; --surface: #ffffff; --ink: #1a2330; --muted: #5a6575;
+  --line: #dde3ea; --accent: #1d5c88;
+  --display: "Newsreader", Georgia, serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #10151b; --surface: #161d25; --ink: #e4e9ef; --muted: #98a4b2;
+    --line: #28323d; --accent: #7db4dd; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #10151b; --surface: #161d25; --ink: #e4e9ef; --muted: #98a4b2;
+  --line: #28323d; --accent: #7db4dd; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.65 var(--body); }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 48px 24px; display: grid; grid-template-columns: 260px 1fr; gap: 56px; }
+aside { position: sticky; top: 48px; align-self: start; display: grid; gap: 18px; }
+.photo { width: 168px; height: 168px; border-radius: 50%; overflow: hidden; background: var(--line); display: grid; place-items: center; }
+.photo img { width: 100%; height: 100%; object-fit: cover; }
+.photo span { font: 600 48px var(--display); color: var(--muted); }
+h1 { font: 600 30px/1.15 var(--display); margin: 0; text-wrap: balance; }
+.role { color: var(--muted); font-size: 14.5px; margin: 0; }
+.links { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; font-size: 14.5px; }
+.links .cv { display: inline-block; padding: 6px 14px; border: 1px solid var(--accent); border-radius: 4px; font-weight: 500; margin-bottom: 6px; }
+.mail { font: 13px var(--mono); color: var(--muted); }
+nav { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 14px; border-top: 1px solid var(--line); padding-top: 14px; }
+nav a { color: var(--muted); }
+main { display: grid; gap: 52px; min-width: 0; }
+section { display: grid; gap: 14px; scroll-margin-top: 24px; }
+h2 { font: 600 22px var(--display); margin: 0; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+h3 { font: 600 15px var(--body); margin: 8px 0 0; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+p { margin: 0; max-width: 66ch; }
+.thesis { background: var(--surface); border-left: 3px solid var(--accent); padding: 14px 18px; border-radius: 0 6px 6px 0; max-width: 66ch; }
+.thesis em { font-family: var(--display); font-size: 17px; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tags span { font-size: 13px; padding: 3px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: var(--surface); }
+.list { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.list li { display: grid; grid-template-columns: 104px 1fr; gap: 16px; }
+.when { font: 13px/1.9 var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.what b { font-weight: 600; }
+.what small { display: block; color: var(--muted); font-size: 14px; }
+.pub .title { font-weight: 600; }
+.pub .meta { color: var(--muted); font-size: 14px; }
+.pub .btns { display: flex; gap: 10px; font-size: 13px; margin-top: 2px; }
+.pub .btns a { font-family: var(--mono); }
+.me { text-decoration: underline; text-underline-offset: 3px; }
+footer { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 18px; font-size: 13px; color: var(--muted); }
+@media (max-width: 760px) {
+  .wrap { grid-template-columns: 1fr; gap: 36px; padding: 28px 18px; }
+  aside { position: static; }
+  .photo { width: 128px; height: 128px; }
+  .list li { grid-template-columns: 1fr; gap: 0; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside>
+    <div class="photo">
+      <!-- Mets ta photo à côté de index.html sous le nom photo.jpg (carrée, ~400x400 px) -->
+      <img src="photo.jpg" alt="Hugo Malafosse" onerror="this.remove()">
+      <span aria-hidden="true">HM</span>
+    </div>
+    <div>
+      <h1>Hugo Malafosse</h1>
+      <p class="role">PhD student · HeKA team<br>Inria · Inserm · Université Paris Cité</p>
+    </div>
+    <ul class="links">
+      <!-- Mets ton CV à côté de index.html sous le nom cv.pdf -->
+      <li><a class="cv" href="cv.pdf">CV (PDF)</a></li>
+      <li><a href="https://scholar.google.com/">Google Scholar</a></li>  <!-- TODO lien -->
+      <li><a href="https://orcid.org/">ORCID</a></li>                    <!-- TODO lien -->
+      <li><a href="https://github.com/">GitHub</a></li>                  <!-- TODO lien -->
+      <li><a href="https://www.linkedin.com/">LinkedIn</a></li>          <!-- TODO lien -->
+      <li class="mail">hugo.malafosse [at] inria.fr</li>                 <!-- TODO vérifier -->
+    </ul>
+    <nav aria-label="Sections">
+      <a href="#about">About</a><a href="#research">Research</a>
+      <a href="#publications">Publications</a><a href="#teaching">Teaching</a>
+      <a href="#misc">Outside research</a>
+    </nav>
+  </aside>
+
+  <!-- ============ CONTENT ============ -->
+  <main>
+
+    <section id="about">
+      <h2>About</h2>
+      <p>I am a second-year PhD student at <a href="https://team.inria.fr/heka/">HeKA</a>, a joint team of Inria Paris, Inserm and Université Paris Cité, based at PariSanté Campus. I am supervised by <a href="#">Anne-Sophie Jannot</a> and <a href="#">Jean Feydy</a>, and my work is part of the <a href="#">INVENTS</a> Horizon Europe project.</p>
+      <p>Before my PhD, I studied applied mathematics at École Polytechnique and completed an M2 in Mathematics of Randomness at Université Paris-Saclay. I also spent a year teaching mathematics in secondary school.</p>
+      <h3>News</h3>
+      <ul class="list">
+        <li><span class="when">Oct 2025</span><span class="what">Started my PhD at HeKA.</span></li>
+        <!-- <li><span class="when">Mmm YYYY</span><span class="what">Talk at …</span></li> -->
+      </ul>
+    </section>
+
+    <section id="research">
+      <h2>Research</h2>
+      <div class="thesis">
+        <small class="when">PhD thesis · 2025–2028</small><br>
+        <em>Mise au point de méthodes pour générer des patients virtuels pour simuler des essais cliniques à partir du SNDS</em>
+      </div>
+      <p>I develop methods to emulate clinical trials from the French national health data system (SNDS), which covers reimbursed care for almost the whole French population. My work combines target trial emulation with the generation of virtual patients, and uses geometric distances between treatment trajectories to compare patients over time. The main application is tocilizumab in rheumatoid arthritis.</p>
+      <div class="tags">
+        <span>Target trial emulation</span><span>Causal inference</span><span>Virtual patients</span>
+        <span>Geometric distances</span><span>Real-world data</span><span>SNDS</span><span>Pharmacoepidemiology</span>
+      </div>
+    </section>
+
+    <section id="publications">
+      <h2>Publications &amp; talks</h2>
+      <!-- Copie-colle un bloc <li> par publication. Ton nom entre <span class="me">…</span>. -->
+      <ul class="list">
+        <li class="pub">
+          <span class="when">2026</span>
+          <span class="what">
+            <span class="title">[Title of the paper]</span><br>
+            <span class="meta"><span class="me">H. Malafosse</span>, J. Feydy, A.-S. Jannot. <i>[Journal or conference]</i>, 2026.</span>
+            <span class="btns"><a href="#">PDF</a><a href="#">arXiv</a><a href="#">Code</a></span>
+          </span>
+        </li>
+      </ul>
+      <h3>Talks &amp; posters</h3>
+      <ul class="list">
+        <li><span class="when">[Mmm YYYY]</span><span class="what"><b>[Title of the talk]</b><small>[Event, city]</small></span></li>
+      </ul>
+    </section>
+
+    <section id="teaching">
+      <h2>Teaching</h2>
+      <!-- Un <li> par cours : années | intitulé | niveau, établissement, volume, rôle. -->
+      <ul class="list">
+        <li><span class="when">2025–2026</span><span class="what"><b>[Course title]</b><small>[Level], [Institution] · [xx h] tutorials (TD)</small></span></li>
+        <li><span class="when">2026–2027</span><span class="what"><b>[Course title]</b><small>[Level], [Institution] · [xx h] lab sessions (TP)</small></span></li>
+        <li><span class="when">[YYYY–YYYY]</span><span class="what"><b>Mathematics teacher</b><small>Secondary school, [city] · full-time, one year</small></span></li>
+      </ul>
+    </section>
+
+    <section id="misc">
+      <h2>Outside research</h2>
+      <p>I do triathlon, road cycling and open-water swimming, and I like hiking and paddleboarding when I get the chance. I also enjoy cooking, and reading about mathematics and physics well outside my thesis topic.</p>
+    </section>
+
+  </main>
+
+  <footer>Last updated November 2026.</footer>
+</div>
+</body>
+</html>
