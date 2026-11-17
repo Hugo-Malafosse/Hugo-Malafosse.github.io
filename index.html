@@ -64,6 +64,23 @@ p { margin: 0; max-width: 66ch; }
 .pub .btns { display: flex; gap: 10px; font-size: 13px; margin-top: 2px; }
 .pub .btns a { font-family: var(--mono); }
 .me { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Course block (CompStat) */
+.course { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 18px 20px; display: grid; gap: 14px; }
+.course-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 16px; }
+.course-head b { font-size: 17px; }
+.course-head small { color: var(--muted); font-size: 14px; display: block; }
+.visio { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; padding: 6px 14px; border: 1px solid var(--accent); border-radius: 4px; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+th { text-align: left; font-weight: 500; color: var(--muted); font-size: 13px; padding: 6px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+td { padding: 9px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+td.n { font: 13px var(--mono); color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+td.files { white-space: nowrap; }
+td.files a, td.files .na { font: 13px var(--mono); margin-right: 12px; }
+.na { color: var(--line); }
+
 footer { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 18px; font-size: 13px; color: var(--muted); }
 @media (max-width: 760px) {
   .wrap { grid-template-columns: 1fr; gap: 36px; padding: 28px 18px; }
@@ -79,7 +96,6 @@ footer { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 18
   <!-- ============ SIDEBAR ============ -->
   <aside>
     <div class="photo">
-      <!-- Mets ta photo à côté de index.html sous le nom photo.jpg (carrée, ~400x400 px) -->
       <img src="photo.jpg" alt="Hugo Malafosse" onerror="this.remove()">
       <span aria-hidden="true">HM</span>
     </div>
@@ -88,15 +104,14 @@ footer { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 18
       <p class="role">PhD student · HeKA team<br>Inria · Inserm · Université Paris Cité</p>
     </div>
     <ul class="links">
-      <!-- Mets ton CV à côté de index.html sous le nom cv.pdf -->
       <li><a class="cv" href="CV.pdf">CV (PDF)</a></li>
-      <li><a href="https://github.com/Hugo-Malafosse">GitHub</a></li>                  <!-- TODO lien -->
-      <li><a href="https://www.linkedin.com/in/hugo-malafosse/">LinkedIn</a></li>          <!-- TODO lien -->
-      <li class="mail">hugo.malafosse [at] inserm(/inria).fr</li>                 <!-- TODO vérifier -->
+      <li><a href="https://github.com/Hugo-Malafosse">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/hugo-malafosse/">LinkedIn</a></li>
+      <li class="mail">hugo.malafosse [at] inserm.fr</li>  <!-- TODO vérifier inserm.fr ou inria.fr -->
     </ul>
     <nav aria-label="Sections">
       <a href="#about">About</a><a href="#research">Research</a>
-      <a href="#publications">Publications</a><a href="#teaching">Teaching</a>
+      <a href="#talks">Talks</a><a href="#teaching">Teaching</a>
     </nav>
   </aside>
 
@@ -106,11 +121,11 @@ footer { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 18
     <section id="about">
       <h2>About</h2>
       <p>I am a second-year PhD student at <a href="https://team.inria.fr/heka/">HeKA</a>, a joint team of Inria Paris, Inserm and Université Paris Cité, based at PariSanté Campus. I am supervised by <a href="#">Anne-Sophie Jannot</a> and <a href="#">Jean Feydy</a>, and my work is part of the <a href="#">INVENTS</a> Horizon Europe project.</p>
-      <p>Before my PhD, I studied applied mathematics at École Polytechnique and completed an M2 in Mathematics at Université Paris-Saclay. I then spent a few months in London to learn about quantitative finance.I then came back to france and spent a year teaching mathematics in secondary school.</p>
+      <p>Before my PhD, I studied applied mathematics at École Polytechnique and completed an M2 in Mathematics at Université Paris-Saclay. I then spent a few months in London learning about quantitative finance, before coming back to France to teach mathematics in a secondary school for a year.</p>
       <h3>News</h3>
       <ul class="list">
+        <li><span class="when">Sep 2026</span><span class="what">Talk at ISCB 2026 in Freiburg.</span></li>
         <li><span class="when">Oct 2025</span><span class="what">Started my PhD at HeKA.</span></li>
-        <!-- <li><span class="when">Mmm YYYY</span><span class="what">Talk at …</span></li> -->
       </ul>
     </section>
 
@@ -120,45 +135,66 @@ footer { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 18
         <small class="when">PhD thesis · 2025–2028</small><br>
         <em>Mise au point de méthodes pour générer des patients virtuels pour simuler des essais cliniques à partir du SNDS</em>
       </div>
-      <p>I develop methods to emulate clinical trials from the French national health data system (SNDS), which covers reimbursed care for almost the whole French population. My work aims to combine target trial emulation with the generation of virtual patients, and uses distances between treatment trajectories to compare patients over time. I am also interested in geometric approaches such as optimal transport or more genrally geometry on the space of probability measures. The main application is in auto-immune rare and pediatric pathologies.</p>
+      <p>I develop methods to emulate clinical trials from the French national health data system (SNDS), which covers reimbursed care for almost the whole French population. My work aims to combine target trial emulation with the generation of virtual patients, using distances between treatment trajectories to compare patients over time. I am also interested in geometric approaches such as optimal transport and, more generally, geometry on the space of probability measures. The main applications are rare autoimmune and paediatric diseases.</p>
       <div class="tags">
         <span>Target trial emulation</span><span>Causal inference</span><span>Virtual patients</span>
-        <span>Geometric distances between probability measures</span><span>Real-world data</span><span>SNDS</span>
+        <span>Optimal transport</span><span>Real-world data</span><span>SNDS</span>
       </div>
     </section>
 
-    <section id="publications">
-      <h2>Publications &amp; talks</h2>
-      <!-- Copie-colle un bloc <li> par publication. Ton nom entre <span class="me">…</span>. -->
+    <section id="talks">
+      <h2>Talks</h2>
+      <!-- Quand tu auras une publi, ajoute une section "Publications" sur ce modèle :
+      <li class="pub"><span class="when">2027</span><span class="what">
+        <span class="title">Title</span><br>
+        <span class="meta"><span class="me">H. Malafosse</span>, J. Feydy, A.-S. Jannot. <i>Journal</i>, 2027.</span>
+        <span class="btns"><a href="paper.pdf">PDF</a><a href="#">arXiv</a><a href="#">Code</a></span>
+      </span></li> -->
       <ul class="list">
-        <li class="pub">
-          <span class="when">2026</span>
-          <span class="what">
-            <span class="title">[Title of the paper]</span><br>
-            <span class="meta"><span class="me">H. Malafosse</span>, J. Feydy, A.-S. Jannot. <i>[Journal or conference]</i>, 2026.</span>
-            <span class="btns"><a href="#">PDF</a><a href="#">arXiv</a><a href="#">Code</a></span>
-          </span>
-        </li>
-      </ul>
-      <h3>Talks &amp; posters</h3>
-      <ul class="list">
-        <li><span class="when">[Mmm YYYY]</span><span class="what"><b>[Title of the talk]</b><small>[Event, city]</small></span></li>
+        <li><span class="when">Sep 2026</span><span class="what"><b>Latent state models for clinical trial emulation</b><small>ISCB 2026 (joint ISCB–GMDS conference), Freiburg, Germany · <a href="#">slides</a></small></span></li>
       </ul>
     </section>
 
     <section id="teaching">
       <h2>Teaching</h2>
-      <!-- Un <li> par cours : années | intitulé | niveau, établissement, volume, rôle. -->
+
+      <!-- ===== CompStat : un <tr> par séance. Lien absent → <span class="na">—</span> ===== -->
+      <div class="course" id="compstat">
+        <div class="course-head">
+          <div>
+            <b>Computational Statistics</b>
+            <small>Master MVA, ENS Paris-Saclay · lab sessions (TP) · course by Stéphanie Allassonnière · 2026–2027</small>
+          </div>
+          <a class="visio" href="#">Join the video call</a>  <!-- TODO lien visio pour les absents -->
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Session</th><th>Topic</th><th>Material</th><th>Resources</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="n">TP 1 · [dd/mm]</td>
+                <td>[Topic]</td>
+                <td class="files"><a href="compstat/tp1.pdf">Subject</a><a href="compstat/quiz1.pdf">Quiz</a><a href="compstat/quiz1_sol.pdf">Solution</a></td>
+                <td><a href="#">[resource]</a></td>
+              </tr>
+              <tr>
+                <td class="n">TP 2 · [dd/mm]</td>
+                <td>[Topic]</td>
+                <td class="files"><a href="compstat/tp2.pdf">Subject</a><span class="na">—</span><span class="na">—</span></td>
+                <td><span class="na">—</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
       <ul class="list">
-        <li><span class="when">2025–2026</span><span class="what"><b>[Course title]</b><small>[Level], [Institution] · [xx h] tutorials (TD)</small></span></li>
-        <li><span class="when">2026–2027</span><span class="what"><b>[Course title]</b><small>[Level], [Institution] · [xx h] lab sessions (TP)</small></span></li>
+        <li><span class="when">2025–2026</span><span class="what"><b>Biostatistics for medical students</b><small>2nd, 3rd and 4th year of medical school, BioSTM unit, Université Paris Cité · tutorials (TD), lab sessions (TP) and supervision of statistics research projects</small></span></li>
+        <li><span class="when">since 2025</span><span class="what"><b>Oral examinations (colles) in mathematics</b><small>Classes préparatoires MPSI, PCSI, MP and ECG</small></span></li>
         <li><span class="when">[YYYY–YYYY]</span><span class="what"><b>Mathematics teacher</b><small>Secondary school, [city] · full-time, one year</small></span></li>
       </ul>
-    </section>
-
-    <section id="misc">
-      <h2>Outside research</h2>
-      <p>I do triathlon, road cycling and open-water swimming, and I like hiking and paddleboarding when I get the chance. I also enjoy cooking, and reading about mathematics and physics well outside my thesis topic.</p>
     </section>
 
   </main>
